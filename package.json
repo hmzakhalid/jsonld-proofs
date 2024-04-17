@@ -32,8 +32,7 @@
   "dependencies": {
     "@zkp-ld/rdf-proofs-wasm": "0.13.3",
     "json-diff": "git+https://github.com/Sequoia/json-diff.git#6085db5",
-    "jsonld": "^8.3.2",
-    "nanoid": "^5.0.6"
+    "jsonld": "^8.3.2"
   },
   "devDependencies": {
     "@types/json-diff": "^1.0.3",

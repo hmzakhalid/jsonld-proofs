@@ -1,7 +1,6 @@
 import { diff } from 'json-diff';
 import * as jsonld from 'jsonld';
 import * as jsonldSpec from 'jsonld/jsonld-spec';
-import { customAlphabet } from 'nanoid';
 import {
   DiffVCResult,
   DocumentLoader,
@@ -19,10 +18,20 @@ const PROOF = 'https://w3id.org/security#proof';
 const DATA_INTEGRITY_CONTEXT = 'https://www.w3.org/ns/data-integrity/v1';
 const SKOLEM_PREFIX = 'urn:bnid:';
 const SKOLEM_REGEX = /[<"]urn:bnid:([^>"]+)[>"]/g;
-const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 
 const deskolemizeString = (s: string): string => s.replace(SKOLEM_PREFIX, '_:');
 const deskolemizeTerm = (t: string): string => t.replace(SKOLEM_REGEX, '_:$1');
+
+function nanoid(length = 10) {
+  const characters = '1234567890abcdefghijklmnopqrstuvwxyz';
+  let result = '';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
 
 /**
  * Converts a JSON-LD document to RDF format.
